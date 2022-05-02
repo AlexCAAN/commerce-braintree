@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 const ProductItem = ({ product }) => {
 
   const { result } = stripHtml(product.description);
+  
+  const handleAddToCart = () => {
+    onAddToCart(product.id, 1);
+  }
 
   return (
     <div className="product__card">
@@ -19,6 +23,7 @@ const ProductItem = ({ product }) => {
           <p className="product__price">
             {product.price.formatted_with_symbol}
           </p>
+          <button name="Add to cart" className="product__btn" onClick={handleAddToCart}> Quick add </button>
         </div>
       </div>
     </div> 
