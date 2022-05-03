@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import commerce from './lib/commerce';
 import ProductsList from './components/ProductsList';
 import CartNav from './components/CartNav';
+import "./styles/main.scss"
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -37,6 +38,22 @@ const App = () => {
     });
   }
 
+  const handleRemoveFromCart = (lineItemId) => {
+    commerce.cart.remove(lineItemId).then((resp) => {
+      setCart(resp.cart);
+    }).catch((error) => {
+      console.error('There was an error removing the item from the cart', error);
+    });
+  }
+
+  const handleEmptyCart = () => {
+    commerce.cart.empty().then((resp) => {
+      setCart(resp.cart);
+    }).catch((error) => {
+      console.error('There was an error emptying the cart', error);
+    });
+  }
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
@@ -51,6 +68,8 @@ const App = () => {
       <CartNav 
         cart={cart}
         onUpdateCartQty={handleUpdateCartQty}
+        onRemoveFromCart={handleRemoveFromCart}
+        onEmptyCart={handleEmptyCart}
       />
     </div>
   )

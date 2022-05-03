@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CartItem from './CartItem';
 import PropTypes from 'prop-types';
 
 
-const Cart = ({ cart }) => {
+const Cart = ({ cart, onEmptyCart }) => {
 
   const handleEmptyCart = () => {
     onEmptyCart();
@@ -47,6 +47,7 @@ const Cart = ({ cart }) => {
       <div className="cart__footer">
         <button className="cart__btn-empty">Empty cart</button>
         <button className="cart__btn-checkout">Checkout</button> 
+        <button className="cart__btn-empty" onClick={handleEmptyCart}>Empty cart</button>
       </div>
     </div>
   );

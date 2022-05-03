@@ -2,7 +2,7 @@ import React from "react";
 import { stripHtml } from "../../node_modules/string-strip-html/dist/string-strip-html.esm";
 import PropTypes from 'prop-types';
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onAddToCart }) => {
 
   const { result } = stripHtml(product.description);
   
