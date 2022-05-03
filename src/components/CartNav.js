@@ -18,7 +18,7 @@ const CartNav = ({ cart, onRemoveFromCart, onUpdateCartQty, onEmptyCart }) => {
   const renderOpenButton = () => (
     <button className="nav__cart-btn--open">
       <FontAwesomeIcon size="2x" icon="shopping-bag" color="#292B83"/>
-      {cart !== null ? <span>{cart.total_items}</span> : ''}
+      {cart ? <span>{cart.total_items}</span> : ''}
     </button>
   );
 
@@ -33,13 +33,16 @@ const CartNav = ({ cart, onRemoveFromCart, onUpdateCartQty, onEmptyCart }) => {
     <div className="nav__cart" onClick={() => setCartVisible(!isCartVisible)}>
         { !isCartVisible ? renderOpenButton() : renderCloseButton() }
     </div>
-    {isCartVisible &&
-      <Cart
-        cart={cart}
-        onUpdateCartQty={onUpdateCartQty}
-        onRemoveFromCart={onRemoveFromCart}
-        onEmptyCart={onEmptyCart}
-      />
+    {
+      isCartVisible ?   
+        <Cart
+            cart={cart}
+            handleUpdateCartQty={onUpdateCartQty}
+            handleRemoveFromCart={onRemoveFromCart}
+            onEmptyCart={onEmptyCart}
+          />
+        :
+        null
     }
     </div>
   );
