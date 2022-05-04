@@ -45,6 +45,7 @@ export default class Checkout extends Component {
   render() {
       return (
           <div>
+            {/* using this.props.cart.line_items gives me what im looking for, but it doesnt work up there */}
             <button onClick={console.log(this.props.cart.line_items)}>click</button> 
           </div>
       );
