@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom'
 
 import commerce from './lib/commerce';
 import ProductsList from './components/ProductsList';
+import Checkout from  './pages/checkout.js'
 import CartNav from './components/CartNav';
 import "./styles/main.scss"
 
-const App = () => {
+const App = ( isCartVisible, renderCartNav ) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
 
@@ -60,19 +62,49 @@ const App = () => {
   }, []);
   
   return (
-    <div className="App">
-      <ProductsList
-        products={products}
-        onAddToCart={handleAddToCart}
-      />
-      <CartNav 
-        cart={cart}
-        onUpdateCartQty={handleUpdateCartQty}
-        onRemoveFromCart={handleRemoveFromCart}
-        onEmptyCart={handleEmptyCart}
-      />
+    <div className="app">
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => {
+            return (
+              <>
+                {/* <Hero
+                  merchant={merchant}
+                /> */}
+                {/* { renderCartNav() } */}
+                <ProductsList
+                  products={products}
+                  onAddToCart={handleAddToCart}
+                />
+                {isCartVisible &&
+                  <CartNav
+                    cart={cart}
+                    onUpdateCartQty={handleUpdateCartQty}
+                    onRemoveFromCart={handleRemoveFromCart}
+                    onEmptyCart={handleEmptyCart}
+                  />
+                } 
+              </>
+            );
+          }}
+        />
+        <Route
+          path="/checkout"
+          exact
+          render={(props) => {
+            return (
+              <Checkout
+                {...props}
+                cart={cart}
+              />
+            )
+          }}
+        />
+      </Switch>
     </div>
-  )
+  );
 };
 
 export default App;

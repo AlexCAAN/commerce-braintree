@@ -1,6 +1,8 @@
 import React from 'react';
-import CartItem from './CartItem';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import CartItem from './CartItem';
 
 
 const Cart = ({ cart, onEmptyCart, handleUpdateCartQty, handleRemoveFromCart }) => {
@@ -47,9 +49,8 @@ const Cart = ({ cart, onEmptyCart, handleUpdateCartQty, handleRemoveFromCart }) 
       { renderItems() }
       { renderTotal() }
       <div className="cart__footer">
-        <button className="cart__btn-empty">Empty cart</button>
-        <button className="cart__btn-checkout">Checkout</button> 
         <button className="cart__btn-empty" onClick={handleEmptyCart}>Empty cart</button>
+        <Link className="cart__btn-checkout"to="/checkout">Checkout</Link> 
       </div>
     </div>
   );
