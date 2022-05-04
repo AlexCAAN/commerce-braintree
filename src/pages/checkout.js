@@ -15,7 +15,7 @@ export default class Checkout extends Component {
   // this doesnt break anything but it doesnt work
   generateCheckoutToken() {
     const { cart } = this.props;
-    if (this.props.cart.line_items) {
+    if (Object.keys(this.props?.cart?.line_items).length) {
       commerce.checkout.generateToken(cart.id, { type: 'cart' })
         .then((token) => {
           this.setState({ checkoutToken: token });
@@ -38,15 +38,14 @@ export default class Checkout extends Component {
   //   }
   // }
 
-  // componentDidMount() {
-  //   this.generateCheckoutToken();
-  // }
+  componentDidMount() {
+    this.generateCheckoutToken();
+  }
   
   render() {
       return (
           <div>
-            {/* using this.props.cart.line_items gives me what im looking for, but it doesnt work up there */}
-            <button onClick={console.log(this.props.cart.line_items)}>click</button> 
+            {/* <button onClick={console.log(this.props.cart.line_items)}>click</button>  */}
           </div>
       );
   };
