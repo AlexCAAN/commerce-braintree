@@ -67,13 +67,13 @@ const App = ( isCartVisible, renderCartNav ) => {
         <Route
           path="/"
           exact
-          render={() => {
+          render={(props) => {
             return (
               <>
                 {/* <Hero
                   merchant={merchant}
                 /> */}
-                {/* { renderCartNav() } */}
+                {/* { this.renderCartNav() } */}
                 <ProductsList
                   products={products}
                   onAddToCart={handleAddToCart}
